@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand navbar-dark fixed-top bg-black">
+    <div class="container-fluid pl-0">
+        <a class="navbar-brand" href="/">Generic Blog</a>
+        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="main-nav">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <%= link_to "Home", home_path, class: "nav-link" %>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="nav-item">
+                    <%= link_to "New Post", new_post_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                    <% if current_user.nil? %>
+                        <%= link_to new_user_session_path, class: "nav-link" do %>Sign in<% end %>
+                    <% else %>
+                        <%= link_to destroy_user_session_path, class: "nav-link", method: :delete do %>Log out (<%= current_user.email %>)<% end %>
+                    <% end %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="height: 56px;"> </div>

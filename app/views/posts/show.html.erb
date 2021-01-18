@@ -1,0 +1,62 @@
+
+<div class="card my-3 bg-dark shadow-lg">
+    <div class="card-body">
+        <small class="float-right text-muted">By: <%= @post.email %></small>
+        <h5 class="card-title font-italic"> <%= @post.title.capitalize %> </h5>
+        <hr class="solid bg-light"></hr>
+        <p class="card-text pl-4"> <%= @post.body %> </p>
+
+        <% if @post.email == current_user.email %>
+            <div class="row">
+                <%= link_to "Edit", edit_post_path(@post), class: "card-link btn btn-light float-right ml-auto" %>
+                <%= link_to "Delete", post_path(@post), method: :delete,
+                                    data: {confirm: 'Are you sure you want to delete this post?'},
+                                    class: "card-link btn btn-danger float-right mx-2" %>
+            </div>
+        <% end %>
+
+        <% if @post.comments.length > 0 %>
+            <hr class="solid bg-light my-3"></hr>
+            <h5 class="text-center">Comments</h5>
+            <hr class="solid bg-light my-3"></hr>
+        <% end %>
+
+        <% @post.comments.each do |comment| %>
+            <div class="row px-3 pb-3">
+                <div class="col-2 p-2 border border-light rounded text-center", style="height: 45px;">
+                    <small style="font-weight: bold;"><%= comment.email %></small>
+                </div>
+                <div class="col">
+                    <p>
+                    <%= comment.body %>
+
+                    <% if comment.email == current_user.email %>
+                        <%= link_to ' (x) ', [comment.post, comment],
+                                method: :delete,
+                                data: { confirm: "Are you sure you want to delete this comment?" } %>
+                    <% end %>
+
+                    </p>
+                </div>
+            </div>
+        <% end %>
+        <hr class="solid bg-light"></hr>
+        <div class="row px-3 justify-content-center">
+
+            <%= form_for([@post, @post.comments.build]) do |f| %>
+                <% if @comment && @comment.errors.any? %>
+                    <% @comment.errors.full_messages.each do |err| %>
+                        <div class="alert alert-danger"><%= err %></div>
+                    <% end %>
+                <% end %>
+                
+                <div class="form-inline">
+                    <%= f.label :body, "Comment:", class: "mr-3" %>
+                    <%= f.text_area :body, class: "form-control ", style: "width: 500px;", rows: 2, placeholder: 'Write your comment here' %>
+                    <%= f.submit "Submit", class: "btn btn-light px-3 ml-3" %>
+                </div>
+            <% end %>
+        </div>
+
+    </div>
+</div>
