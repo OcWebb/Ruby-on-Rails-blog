@@ -6,7 +6,6 @@ This project was my first expierence with both Ruby and Rails.  The goal was to 
  - Ability for users to create posts and comments
 	 - Posts and comments should have CRUD capabilities implemented
 	 - Users should only be able to edit/delete their own posts and comments
- - A simple UI design
 
 ### Versions
  - Ruby 2.7.2
