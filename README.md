@@ -1,24 +1,13 @@
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Ruby on rails blog
+This project was my first expierence with both Ruby and Rails.  The goal was to create a simple blogging website that would include:
 
-Things you may want to cover:
+ - User accounts
+ - Ability for users to create posts and comments
+	 - Posts and comments should have CRUD capabilities implemented
+	 - Users should only be able to edit/delete their own posts and comments
+ - A simple UI design
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Versions
+ - Ruby 2.7.2
+ - Rails 6.0.3.4
